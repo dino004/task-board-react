@@ -1,12 +1,20 @@
-const Field = () => {
+const Field = (props) => {
+  const {
+    className = "",
+    type = "text",
+    id,
+    name,
+    placeholder,
+    required,
+  } = props;
   return (
     <input
-      className="input-task"
-      type="text"
-      data-text-input
-      name="todo-text"
-      placeholder="Enter task..."
-      required
+      className={className}
+      type={type}
+      id={id}
+      name={name}
+      placeholder={placeholder}
+      required={required}
     />
   );
 };

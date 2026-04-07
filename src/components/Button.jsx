@@ -1,7 +1,8 @@
-const Button = () => {
+const Button = (props) => {
+  const { className = "", id, type = "button", children } = props;
   return (
-    <button className="add-btn" type="submit" data-add-todo-btn>
-      Add task
+    <button className={className} type={type} id={id}>
+      {children}
     </button>
   );
 };

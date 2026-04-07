@@ -4,8 +4,17 @@ import Button from "./Button";
 const AddTaskForm = () => {
   return (
     <form className="form js-task-form-wrapper" autoComplete="off">
-      <Field />
-      <Button />
+      <Field
+        className="input-task"
+        type="text"
+        id="new-task"
+        name="todo-text"
+        placeholder="Enter task..."
+        required={true}
+      />
+      <Button className="add-btn" type="submit" id="add-btn-id">
+        Add task
+      </Button>
     </form>
   );
 };
