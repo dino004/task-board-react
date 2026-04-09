@@ -14,10 +14,27 @@ const TaskBoard = () => {
       isDone: true,
     },
   ];
+
+  const deleteTask = (taskId) => {
+    console.log(`deleted task with id: ${taskId}`);
+  };
+
+  const toggleTaskComplete = (taskId, isDone) => {
+    console.log(`Task ${taskId} ${isDone ? "done" : "not done"}`);
+  };
+
+  const addTask = () => {
+    console.log("adding task");
+  };
+
   return (
     <section className="app js-task-board">
-      <AddTaskForm />
-      <TaskList tasks={tasks} />
+      <AddTaskForm addTask={addTask} />
+      <TaskList
+        tasks={tasks}
+        onDeleteTaskButtonClick={deleteTask}
+        onTaskComplete={toggleTaskComplete}
+      />
     </section>
   );
 };

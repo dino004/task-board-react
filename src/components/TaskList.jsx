@@ -1,7 +1,7 @@
 import TaskItem from "./TaskItem";
 
 const TaskList = (props) => {
-  const { tasks = [] } = props;
+  const { tasks = [], onDeleteTaskButtonClick, onTaskComplete } = props;
 
   const hasTasks = tasks.length > 0;
 
@@ -16,6 +16,8 @@ const TaskList = (props) => {
         <TaskItem
           className="task"
           key={task.id}
+          onDeleteTaskButtonClick={onDeleteTaskButtonClick}
+          onTaskComplete={onTaskComplete}
           {...task}
         />
       ))}

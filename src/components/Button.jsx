@@ -1,7 +1,18 @@
 const Button = (props) => {
-  const { className = "", id, type = "button", children } = props;
+  const {
+    className = "",
+    id,
+    type = "button",
+    onDeleteTaskButtonClick,
+    children,
+  } = props;
   return (
-    <button className={className} type={type} id={id}>
+    <button
+      className={className}
+      type={type}
+      id={id}
+      onClick={onDeleteTaskButtonClick}
+    >
       {children}
     </button>
   );

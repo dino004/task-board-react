@@ -1,9 +1,20 @@
 import Field from "./Field";
 import Button from "./Button";
 
-const AddTaskForm = () => {
+const AddTaskForm = (props) => {
+  const { addTask } = props;
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    addTask();
+  };
+
   return (
-    <form className="form js-task-form-wrapper" autoComplete="off">
+    <form
+      className="form js-task-form-wrapper"
+      autoComplete="off"
+      onSubmit={onSubmit}
+    >
       <Field
         className="input-task"
         type="text"
