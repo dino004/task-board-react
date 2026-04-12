@@ -18,12 +18,8 @@ const TaskBoard = () => {
 
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
-  const deleteTask = (taskId) => {
-    const isConfirmed = confirm("You are sure you want to delete this task?");
-
-    if (isConfirmed) {
+    const deleteTask = (taskId) => {
       setTasks(tasks.filter((task) => task.id !== taskId));
-    }
   };
 
   const toggleTaskComplete = (taskId) => {

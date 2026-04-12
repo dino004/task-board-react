@@ -1,0 +1,116 @@
+:root {
+  --primary-bg-color: rgb(213, 152, 152);
+  --secondary-bg-color: rosybrown;
+  --accent-color: #bc8f8f;
+
+  --border-radius-value: 10px;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: var(--primary-bg-color);
+}
+
+.app {
+  display: block;
+  width: 95%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: var(--border-radius-value);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 1em;
+  padding: 10px;
+  background-color: var(--secondary-bg-color);
+  border-radius: var(--border-radius-value);
+}
+
+@media (max-width: 380px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.input-task,
+.add-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--border-radius-value);
+  border: none;
+  font-size: 16px;
+}
+
+.input-task:focus {
+  outline: 2px solid var(--accent-color);
+}
+
+.add-btn {
+  background-color: var(--primary-bg-color);
+  color: brown;
+  cursor: pointer;
+  transition:
+    background-color 200ms linear,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.add-btn:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.add-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.is-completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-list-styles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 300px;
+  padding: 10px;
+  border-radius: var(--border-radius-value);
+  background-color: var(--secondary-bg-color);
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--border-radius-value);
+  background-color: var(--primary-bg-color);
+}
+
+.remove-btn {
+  border: none;
+  background: none;
+  transition: transform 200ms linear;
+}
+
+.remove-btn:hover {
+  transform: scale(1.2);
+}
