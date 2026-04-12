@@ -3,7 +3,7 @@ const Button = (props) => {
     className = "",
     id,
     type = "button",
-    onDeleteTaskButtonClick,
+    onClick,
     children,
   } = props;
   return (
@@ -11,7 +11,7 @@ const Button = (props) => {
       className={className}
       type={type}
       id={id}
-      onClick={onDeleteTaskButtonClick}
+      onClick={onClick}
     >
       {children}
     </button>

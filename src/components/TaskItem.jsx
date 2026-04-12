@@ -6,13 +6,13 @@ const TaskItem = (props) => {
     id,
     title,
     isDone,
-    onDeleteTaskButtonClick,
+    onClick,
     onTaskComplete,
   } = props;
   return (
     <li
       onClick={() => {
-        onTaskComplete(id, isDone);
+        onTaskComplete(id);
       }}
       className={`${className} ${isDone ? "is-completed" : ""}`}
       id={id}
@@ -21,9 +21,9 @@ const TaskItem = (props) => {
       {title}
       <Button
         className="remove-btn"
-        onDeleteTaskButtonClick={(evt) => {
+        onClick={(evt) => {
           evt.stopPropagation();
-          onDeleteTaskButtonClick(id);
+          onClick(id);
         }}
       >
         ❌

@@ -6,6 +6,8 @@ const Field = (props) => {
     name,
     placeholder,
     required,
+    onInput,
+    value,
   } = props;
   return (
     <input
@@ -15,6 +17,8 @@ const Field = (props) => {
       name={name}
       placeholder={placeholder}
       required={required}
+      onInput={onInput}
+      value={value}
     />
   );
 };

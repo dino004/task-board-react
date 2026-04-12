@@ -1,8 +1,9 @@
+import { useState } from "react";
 import AddTaskForm from "./AddTaskForm";
 import TaskList from "./TaskList";
 
 const TaskBoard = () => {
-  const tasks = [
+  const [tasks, setTasks] = useState([
     {
       id: "id-1",
       title: "first task",
@@ -13,23 +14,44 @@ const TaskBoard = () => {
       title: "second task",
       isDone: true,
     },
-  ];
+  ]);
+
+  const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const deleteTask = (taskId) => {
-    console.log(`deleted task with id: ${taskId}`);
+    const isConfirmed = confirm("You are sure you want to delete this task?");
+
+    if (isConfirmed) {
+      setTasks(tasks.filter((task) => task.id !== taskId));
+    }
   };
 
-  const toggleTaskComplete = (taskId, isDone) => {
-    console.log(`Task ${taskId} ${isDone ? "done" : "not done"}`);
+  const toggleTaskComplete = (taskId) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, isDone: !task.isDone } : task,
+      ),
+    );
   };
 
   const addTask = () => {
-    console.log("adding task");
+    if (!newTaskTitle.trim().length) return;
+    const newTask = {
+      id: crypto?.randomUUID() ?? Date.now().toString(),
+      title: newTaskTitle,
+      isDone: false,
+    };
+    setTasks([...tasks, newTask]);
+    setNewTaskTitle("");
   };
 
   return (
     <section className="app js-task-board">
-      <AddTaskForm addTask={addTask} />
+      <AddTaskForm
+        addTask={addTask}
+        newTaskTitle={newTaskTitle}
+        setNewTaskTitle={setNewTaskTitle}
+      />
       <TaskList
         tasks={tasks}
         onDeleteTaskButtonClick={deleteTask}

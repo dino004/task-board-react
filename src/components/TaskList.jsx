@@ -16,7 +16,7 @@ const TaskList = (props) => {
         <TaskItem
           className="task"
           key={task.id}
-          onDeleteTaskButtonClick={onDeleteTaskButtonClick}
+          onClick={onDeleteTaskButtonClick}
           onTaskComplete={onTaskComplete}
           {...task}
         />
