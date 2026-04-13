@@ -1,25 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTaskForm from "./AddTaskForm";
 import TaskList from "./TaskList";
 
 const TaskBoard = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: "id-1",
-      title: "first task",
-      isDone: false,
-    },
-    {
-      id: "id-2",
-      title: "second task",
-      isDone: true,
-    },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    try {
+      const saveTasks = localStorage.getItem("tasks");
+      return saveTasks ? JSON.parse(saveTasks) : [];
+    } catch (error) {
+      console.log("Error parsing JSON:", error);
+      return [];
+    }
+  });
 
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
-    const deleteTask = (taskId) => {
-      setTasks(tasks.filter((task) => task.id !== taskId));
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
   const toggleTaskComplete = (taskId) => {
@@ -40,6 +37,10 @@ const TaskBoard = () => {
     setTasks([...tasks, newTask]);
     setNewTaskTitle("");
   };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <section className="app js-task-board">
