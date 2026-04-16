@@ -18,7 +18,7 @@ const TaskList = (props) => {
     );
   }
   return (
-    <ul className="todo-list-styles" id="task-container">
+    <ul className="task-list-styles" id="task-container">
       {tasks.map((task) => (
         <TaskItem
           className="task"

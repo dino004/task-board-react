@@ -3,6 +3,9 @@
   --secondary-bg-color: rosybrown;
   --accent-color: #bc8f8f;
 
+  --main-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   --border-radius-value: 10px;
 }
 
@@ -34,13 +37,13 @@ p {
 }
 
 .app {
-  display: block;
   width: 95%;
   max-width: 400px;
   margin: 50px auto;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: var(--border-radius-value);
+  box-shadow: var(--main-shadow);
 }
 
 .form {
@@ -98,7 +101,7 @@ p {
   opacity: 0.6;
 }
 
-.todo-list-styles {
+.task-list-styles {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -113,14 +116,34 @@ p {
 .task {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  padding: 8px;
+  padding: 10px 15px;
   border-radius: var(--border-radius-value);
   background-color: var(--primary-bg-color);
+  cursor: pointer;
+  box-shadow: var(--main-shadow);
+  transition: background-color 200ms ease;
+}
+
+.task:hover {
+  background-color: var(--accent-color);
+}
+
+.task span {
+  flex-grow: 1;
+  margin-right: 15px;
+  word-break: break-word;
 }
 
 .remove-btn {
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 50%;
   background: none;
   cursor: pointer;
   transition: transform 200ms linear;
@@ -128,6 +151,10 @@ p {
 
 .remove-btn:hover {
   transform: scale(1.2);
+}
+
+.remove-btn:focus-visible {
+  outline: 2px solid brown;
 }
 
 .task-empty-message {
@@ -145,5 +172,8 @@ p {
 }
 
 .task-empty-message img {
-  max-width: 100%;
+  max-width: 150px;
+  margin-top: 16px;
+  opacity: 0.8;
+  filter: grayscale(0.3);
 }

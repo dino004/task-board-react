@@ -18,7 +18,7 @@ const TaskItem = (props) => {
       id={id}
       data-is-done={isDone}
     >
-      {title}
+      <span>{title}</span>
       <Button
         className="remove-btn"
         onClick={(evt) => {

@@ -19,7 +19,7 @@ const AddTaskForm = (props) => {
         className="input-task"
         type="text"
         id="new-task"
-        name="todo-text"
+        name="task-text"
         placeholder="Enter task..."
         required={true}
         value={newTaskTitle}

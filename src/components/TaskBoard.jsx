@@ -47,6 +47,10 @@ const TaskBoard = () => {
     localStorage.setItem(KEY, JSON.stringify(tasks));
   }, [tasks]);
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <section className="app js-task-board">
       <AddTaskForm
