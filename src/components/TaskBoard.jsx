@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AddTaskForm from "./AddTaskForm";
 import TaskList from "./TaskList";
+
+const KEY = "tasks";
 
 const TaskBoard = () => {
   const [tasks, setTasks] = useState(() => {
     try {
-      const saveTasks = localStorage.getItem("tasks");
+      const saveTasks = localStorage.getItem(KEY);
       return saveTasks ? JSON.parse(saveTasks) : [];
     } catch (error) {
       console.log("Error parsing JSON:", error);
@@ -14,6 +16,20 @@ const TaskBoard = () => {
   });
 
   const [newTaskTitle, setNewTaskTitle] = useState("");
+
+  const inputRef = useRef(null);
+
+  const addTask = () => {
+    if (!newTaskTitle.trim().length) return;
+    const newTask = {
+      id: crypto?.randomUUID() ?? Date.now().toString(),
+      title: newTaskTitle,
+      isDone: false,
+    };
+    setTasks([...tasks, newTask]);
+    setNewTaskTitle("");
+    inputRef.current?.focus();
+  };
 
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
@@ -27,19 +43,8 @@ const TaskBoard = () => {
     );
   };
 
-  const addTask = () => {
-    if (!newTaskTitle.trim().length) return;
-    const newTask = {
-      id: crypto?.randomUUID() ?? Date.now().toString(),
-      title: newTaskTitle,
-      isDone: false,
-    };
-    setTasks([...tasks, newTask]);
-    setNewTaskTitle("");
-  };
-
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem(KEY, JSON.stringify(tasks));
   }, [tasks]);
 
   return (
@@ -48,6 +53,7 @@ const TaskBoard = () => {
         addTask={addTask}
         newTaskTitle={newTaskTitle}
         setNewTaskTitle={setNewTaskTitle}
+        inputRef={inputRef}
       />
       <TaskList
         tasks={tasks}

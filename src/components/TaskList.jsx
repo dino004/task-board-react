@@ -7,7 +7,14 @@ const TaskList = (props) => {
 
   if (!hasTasks) {
     return (
-      <div className="task-empty-message">No tasks yet. Add one above!</div>
+      <div className="task-empty-message">
+        <p>No tasks yet. Add one above!</p>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/5058/5058432.png"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
     );
   }
   return (

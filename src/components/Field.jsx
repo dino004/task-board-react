@@ -7,6 +7,7 @@ const Field = (props) => {
     placeholder,
     required,
     onInput,
+    inputRef,
     value,
   } = props;
   return (
@@ -19,6 +20,7 @@ const Field = (props) => {
       required={required}
       onInput={onInput}
       value={value}
+      ref={inputRef}
     />
   );
 };

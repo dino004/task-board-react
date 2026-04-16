@@ -2,7 +2,7 @@ import Field from "./Field";
 import Button from "./Button";
 
 const AddTaskForm = (props) => {
-  const { addTask, newTaskTitle, setNewTaskTitle } = props;
+  const { addTask, newTaskTitle, setNewTaskTitle, inputRef } = props;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -24,6 +24,7 @@ const AddTaskForm = (props) => {
         required={true}
         value={newTaskTitle}
         onInput={(evt) => setNewTaskTitle(evt.target.value)}
+        inputRef={inputRef}
       />
       <Button className="add-btn" type="submit" id="add-btn-id">
         Add task
