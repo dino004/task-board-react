@@ -1,3 +1,4 @@
+import { memo } from "react";
 import TaskItem from "./TaskItem";
 
 const TaskList = (props) => {
@@ -32,4 +33,4 @@ const TaskList = (props) => {
   );
 };
 
-export default TaskList;
+export default memo(TaskList);

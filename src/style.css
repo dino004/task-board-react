@@ -36,6 +36,16 @@ p {
   margin: 0;
 }
 
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 .app {
   width: 95%;
   max-width: 400px;
@@ -94,6 +104,60 @@ p {
 .add-btn:active {
   transform: translateY(0) scale(0.98);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: var(--secondary-bg-color);
+  border-radius: var(--border-radius-value);
+  color: brown;
+  /* В тон кнопкам */
+}
+
+.info-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.remove-all-tasks-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: #fce4e4;
+  border: 1px solid #d32f2f;
+  color: #d32f2f;
+  border-radius: var(--border-radius-value);
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.remove-all-tasks-btn:hover {
+  background-color: #d32f2f;
+  color: white;
+  transform: scale(1.05);
+}
+
+.remove-all-tasks-btn:active {
+  transform: scale(0.95);
+}
+
+.remove-all-tasks-btn:disabled {
+  background-color: #eee;
+  border-color: #ccc;
+  color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.remove-all-tasks-btn:disabled:hover {
+  background-color: #eee;
+  transform: none;
 }
 
 .is-completed {

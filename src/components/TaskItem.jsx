@@ -1,14 +1,8 @@
+import { memo } from "react";
 import Button from "./Button";
 
 const TaskItem = (props) => {
-  const {
-    className = "",
-    id,
-    title,
-    isDone,
-    onClick,
-    onTaskComplete,
-  } = props;
+  const { className = "", id, title, isDone, onClick, onTaskComplete } = props;
   return (
     <li
       onClick={() => {
@@ -32,4 +26,4 @@ const TaskItem = (props) => {
   );
 };
 
-export default TaskItem;
+export default memo(TaskItem);

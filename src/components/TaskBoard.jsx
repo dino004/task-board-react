@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import AddTaskForm from "./AddTaskForm";
 import TaskList from "./TaskList";
+import TaskInfo from "./TaskInfo";
 
 const KEY = "tasks";
 
@@ -19,29 +20,33 @@ const TaskBoard = () => {
 
   const inputRef = useRef(null);
 
-  const addTask = () => {
+  const addTask = useCallback(() => {
     if (!newTaskTitle.trim().length) return;
     const newTask = {
       id: crypto?.randomUUID() ?? Date.now().toString(),
       title: newTaskTitle,
       isDone: false,
     };
-    setTasks([...tasks, newTask]);
+    setTasks((prevState) => [...prevState, newTask]);
     setNewTaskTitle("");
     inputRef.current?.focus();
-  };
+  }, [newTaskTitle]);
 
-  const deleteTask = (taskId) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
-  };
+  const deleteTask = useCallback((taskId) => {
+    setTasks((prevState) => prevState.filter((task) => task.id !== taskId));
+  }, []);
 
-  const toggleTaskComplete = (taskId) => {
-    setTasks(
-      tasks.map((task) =>
+  const toggleTaskComplete = useCallback((taskId) => {
+    setTasks((prevState) =>
+      prevState.map((task) =>
         task.id === taskId ? { ...task, isDone: !task.isDone } : task,
       ),
     );
-  };
+  }, []);
+
+  const deleteAllTasks = useCallback(() => {
+    setTasks([]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(tasks));
@@ -51,6 +56,13 @@ const TaskBoard = () => {
     inputRef.current?.focus();
   }, []);
 
+  const totalTasks = tasks.length;
+  const doneTasks = useMemo(
+    () => tasks.filter(({ isDone }) => isDone).length,
+    [tasks],
+  );
+  const noTasks = !tasks.length;
+
   return (
     <section className="app js-task-board">
       <AddTaskForm
@@ -58,6 +70,12 @@ const TaskBoard = () => {
         newTaskTitle={newTaskTitle}
         setNewTaskTitle={setNewTaskTitle}
         inputRef={inputRef}
+      />
+      <TaskInfo
+        totalTasks={totalTasks}
+        doneTasks={doneTasks}
+        deleteAllTasks={deleteAllTasks}
+        isDisabled={noTasks}
       />
       <TaskList
         tasks={tasks}
