@@ -3,6 +3,17 @@
   --secondary-bg-color: rosybrown;
   --accent-color: #bc8f8f;
 
+  --text-main: #333;
+  --text-accent: brown;
+  --text-contrast: white;
+
+  --danger-color: #d32f2f;
+  --danger-bg-light: #fce4e4;
+
+  --disabled-bg: #eee;
+  --disabled-border: #ccc;
+  --disabled-text: #aaa;
+
   --main-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
@@ -13,13 +24,8 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
-  color: #333;
+  color: var(--text-main);
   background-color: var(--primary-bg-color);
-}
-
-a {
-  text-decoration: none;
-  color: #2e7d32;
 }
 
 ul {
@@ -87,7 +93,7 @@ p {
 
 .add-btn {
   background-color: var(--primary-bg-color);
-  color: brown;
+  color: var(--text-accent);
   cursor: pointer;
   transition:
     background-color 200ms linear,
@@ -114,8 +120,7 @@ p {
   padding: 10px 15px;
   background-color: var(--secondary-bg-color);
   border-radius: var(--border-radius-value);
-  color: brown;
-  /* В тон кнопкам */
+  color: var(--text-accent);
 }
 
 .info-section h3 {
@@ -128,17 +133,17 @@ p {
 .remove-all-tasks-btn {
   padding: 6px 12px;
   font-size: 12px;
-  background-color: #fce4e4;
-  border: 1px solid #d32f2f;
-  color: #d32f2f;
+  background-color: var(--danger-bg-light);
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
   border-radius: var(--border-radius-value);
   cursor: pointer;
   transition: all 200ms ease;
 }
 
-.remove-all-tasks-btn:hover {
-  background-color: #d32f2f;
-  color: white;
+.remove-all-tasks-btn:hover:not(:disabled) {
+  background-color: var(--danger-color);
+  color: var(--text-contrast);
   transform: scale(1.05);
 }
 
@@ -147,16 +152,16 @@ p {
 }
 
 .remove-all-tasks-btn:disabled {
-  background-color: #eee;
-  border-color: #ccc;
-  color: #aaa;
+  background-color: var(--disabled-bg);
+  border-color: var(--disabled-border);
+  color: var(--disabled-text);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
 .remove-all-tasks-btn:disabled:hover {
-  background-color: #eee;
+  background-color: var(--disabled-bg);
   transform: none;
 }
 
@@ -218,7 +223,7 @@ p {
 }
 
 .remove-btn:focus-visible {
-  outline: 2px solid brown;
+  outline: 2px solid var(--text-accent);
 }
 
 .task-empty-message {

@@ -11,7 +11,7 @@ Select language:
 📋 Task Board (React 19 Version)
 This is a modern React-powered version of my Task Board application. It represents a transition from imperative DOM manipulation to a declarative, component-based architecture.
 
-🔗 Original Vanilla JS version: [Link to your repo]
+🔗 Original Vanilla JS version: https://github.com/dino004/task-board
 
 🌟 Key Features & Implementation
 State Management: Full CRUD (Create, Read, Update, Delete) cycle using useState.
@@ -57,7 +57,7 @@ Start dev server: npm run dev
 📋 Task Board (React 19 Version)
 Це сучасна версія мого додатку Task Board, переписана на React. Проєкт став результатом переходу від маніпуляцій з DOM (Imperative JS) до декларативної компонентної архітектури.
 
-🔗 Оригінальна версія на Vanilla JS: [Посилання на твій репозиторій]
+🔗 Оригінальна версія на Vanilla JS: https://github.com/dino004/task-board
 
 🌟 Ключові особливості та реалізація
 Управління станом: Реалізовано повний цикл CRUD (створення, читання, оновлення, видалення) за допомогою useState.
