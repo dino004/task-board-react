@@ -1,12 +1,11 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import TaskItem from "./TaskItem";
+import { TasksContext } from "./context/TasksContext";
 
-const TaskList = (props) => {
-  const { tasks = [], onDeleteTaskButtonClick, onTaskComplete } = props;
+const TaskList = () => {
+  const { tasks = [] } = useContext(TasksContext);
 
-  const hasTasks = tasks.length > 0;
-
-  if (!hasTasks) {
+  if (!tasks.length) {
     return (
       <div className="task-empty-message">
         <p>No tasks yet. Add one above!</p>
@@ -21,13 +20,7 @@ const TaskList = (props) => {
   return (
     <ul className="task-list-styles" id="task-container">
       {tasks.map((task) => (
-        <TaskItem
-          className="task"
-          key={task.id}
-          onClick={onDeleteTaskButtonClick}
-          onTaskComplete={onTaskComplete}
-          {...task}
-        />
+        <TaskItem className="task" key={task.id} {...task} />
       ))}
     </ul>
   );

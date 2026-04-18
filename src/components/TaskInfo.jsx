@@ -1,8 +1,16 @@
-import { memo } from "react";
+import { memo, useMemo, useContext } from "react";
 import Button from "./Button";
+import { TasksContext } from "./context/TasksContext";
 
-const TaskInfo = (props) => {
-  const { totalTasks, doneTasks, deleteAllTasks, isDisabled } = props;
+const TaskInfo = () => {
+  const { tasks, deleteAllTasks } = useContext(TasksContext);
+
+  const totalTasks = tasks.length;
+  const doneTasks = useMemo(
+    () => tasks.filter(({ isDone }) => isDone).length,
+    [tasks],
+  );
+  const noTasks = !tasks.length;
 
   return (
     <section className="info-section">
@@ -11,7 +19,7 @@ const TaskInfo = (props) => {
         Is done {doneTasks} from {totalTasks}
       </h3>
       <Button
-        disabled={isDisabled}
+        disabled={noTasks}
         className="remove-all-tasks-btn"
         type="button"
         onClick={deleteAllTasks}

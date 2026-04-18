@@ -1,12 +1,15 @@
+import { useContext } from "react";
 import { memo } from "react";
 import Button from "./Button";
+import { TasksContext } from "./context/TasksContext";
 
 const TaskItem = (props) => {
-  const { className = "", id, title, isDone, onClick, onTaskComplete } = props;
+  const { className = "", id, title, isDone } = props;
+  const { toggleTaskComplete, deleteTask } = useContext(TasksContext);
   return (
     <li
       onClick={() => {
-        onTaskComplete(id);
+        toggleTaskComplete(id);
       }}
       className={`${className} ${isDone ? "is-completed" : ""}`}
       id={id}
@@ -17,7 +20,7 @@ const TaskItem = (props) => {
         className="remove-btn"
         onClick={(evt) => {
           evt.stopPropagation();
-          onClick(id);
+          deleteTask(id);
         }}
       >
         ❌
