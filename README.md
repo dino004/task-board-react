@@ -32,26 +32,10 @@ This is a high-performance, modern version of my Task Board application. It has 
 * **Vite** (Ultra-fast build tool)
 * **CSS3** (Custom variables, Flexbox/Grid, smooth transitions)
 
-### 📊 Application Structure
-```mermaid
-graph TD
-    App --> TasksProvider
-    TasksProvider --> TaskBoard
-    TaskBoard --> AddTaskForm
-    TaskBoard --> TaskInfo
-    TaskBoard --> TaskList
-    TaskList --> TaskItem
-    
-    subgraph Context_Layer
-    TasksProvider -.->|Provides State & Logic| AddTaskForm
-    TasksProvider -.->|Provides State & Logic| TaskInfo
-    TasksProvider -.->|Provides State & Logic| TaskItem
-    end
-```
 ---
 
-    <a name="ua"></a> 🇺🇦 Українська версія
-    
+## <a name="ua"></a> 🇺🇦 Українська версія
+
 🚀 Огляд проєкту
 Це високопродуктивна сучасна версія мого додатку Task Board. Проєкт еволюціонував від простого Vanilla JS до професійно структурованого додатка на React 19 із використанням просунутих патернів управління станом.
 
