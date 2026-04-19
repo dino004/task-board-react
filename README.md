@@ -1,4 +1,4 @@
-# 📋 Task Board (React 19 Version)
+# 📋 Task Board (React 19 + Context API)
 
 Select language:
 - [🇬🇧 English](#en)
@@ -6,93 +6,89 @@ Select language:
 
 ---
 
-## <a name="en"></a> 🇬🇧 Task Board (EN Version)
+## <a name="en"></a> 🇬🇧 English Version
 
-📋 Task Board (React 19 Version)
-This is a modern React-powered version of my Task Board application. It represents a transition from imperative DOM manipulation to a declarative, component-based architecture.
+### 🚀 Overview
+This is a high-performance, modern version of my Task Board application. It has been evolved from a simple Vanilla JS project into a professionally structured React 19 application using advanced state management and architectural patterns.
 
-🔗 Original Vanilla JS version: https://github.com/dino004/task-board
+🔗 **Original Vanilla JS version:** [https://github.com/dino004/task-board](https://github.com/dino004/task-board)
 
-🌟 Key Features & Implementation
-State Management: Full CRUD (Create, Read, Update, Delete) cycle using useState.
+### 🏗️ Architecture & Architecture Patterns
+* **Provider Pattern:** Logic is fully encapsulated within a `TasksProvider`, keeping UI components clean and decoupled.
+* **Context API:** Implemented a global state management system to avoid "prop drilling" and ensure data accessibility across the component tree.
+* **Atomic Design Principles:** Reusable UI components like `Button` and `Field` for a consistent design system.
+* **Module Separation:** Decoupled `TasksContext` and `TasksProvider` to comply with **React Fast Refresh** standards and improve modularity.
 
-Data Persistence: Automatic synchronization with localStorage via useEffect.
+### 🌟 Technical Implementation
+* **State Management:** Full CRUD cycle with optimized state updates.
+* **Performance Optimization:** * `memo()`: Prevents unnecessary re-renders of list items.
+    * `useCallback()`: Stabilizes function references passed through context.
+    * `useMemo()`: Optimized derived data (e.g., task counters).
+* **Data Persistence:** Automatic `localStorage` sync with robust `try...catch` error handling.
+* **UX Features:** Manual focus management via `useRef`, semantic HTML, and responsive mobile-first design.
 
-Performance: Used Lazy Initializer for state to ensure expensive localStorage reads happen only on the initial mount.
+### 🛠️ Tech Stack
+* **React 19** (Functional components, Hooks: useState, useEffect, useRef, useCallback, useMemo, useContext)
+* **Vite** (Ultra-fast build tool)
+* **CSS3** (Custom variables, Flexbox/Grid, smooth transitions)
 
-Enhanced UX: * Auto-focus: Managed input focus using useRef for a seamless "add-and-type" experience.
-
-Empty States: Friendly UI feedback when the task list is empty.
-
-Accessibility: Proper use of ARIA attributes and semantic HTML.
-
-Responsive Design: Mobile-first approach with CSS Grid/Flexbox and CSS Variables.
-
-🛠️ Tech Stack
-React 19 (Functional components, Hooks: useState, useEffect, useRef)
-
-Vite (Build tool for fast HMR)
-
-Vanilla CSS (Custom variables, transitions, and responsive grid)
-
-🚀 What I Learned During This Rewrite
-Declarative UI: Instead of manually appending/removing elements, I now describe what the UI should look like based on the state.
-
-Prop Drilling: Understanding how to pass data and functions through component levels.
-
-Stability: Handling JSON parsing errors with try...catch in the initial state.
-
-📦 Installation
-Clone the repo: git clone ...
-
-Install dependencies: npm install
-
-Start dev server: npm run dev
-
+### 📊 Application Structure
+```mermaid
+graph TD
+    App --> TasksProvider
+    TasksProvider --> TaskBoard
+    TaskBoard --> AddTaskForm
+    TaskBoard --> TaskInfo
+    TaskBoard --> TaskList
+    TaskList --> TaskItem
+    
+    subgraph Context_Layer
+    TasksProvider -.->|Provides State & Logic| AddTaskForm
+    TasksProvider -.->|Provides State & Logic| TaskInfo
+    TasksProvider -.->|Provides State & Logic| TaskItem
+    end
+```
 ---
 
+    <a name="ua"></a> 🇺🇦 Українська версія
+    
+🚀 Огляд проєкту
+Це високопродуктивна сучасна версія мого додатку Task Board. Проєкт еволюціонував від простого Vanilla JS до професійно структурованого додатка на React 19 із використанням просунутих патернів управління станом.
 
-## <a name="ua"></a> 🇺🇦 Task Board (UA Version)
+🔗 Оригінальна Vanilla JS версія: https://github.com/dino004/task-board
 
-📋 Task Board (React 19 Version)
-Це сучасна версія мого додатку Task Board, переписана на React. Проєкт став результатом переходу від маніпуляцій з DOM (Imperative JS) до декларативної компонентної архітектури.
+🏗️ Архітектура та патерни
+Provider Pattern: Вся логіка інкапсульована в TasksProvider, що робить UI-компоненти "чистими" та незалежними.
 
-🔗 Оригінальна версія на Vanilla JS: https://github.com/dino004/task-board
+Context API: Глобальне управління станом для уникнення "prop drilling" та зручного доступу до даних.
 
-🌟 Ключові особливості та реалізація
-Управління станом: Реалізовано повний цикл CRUD (створення, читання, оновлення, видалення) за допомогою useState.
+Atomic Design: Використання атомарних компонентів (Button, Field) для створення цілісної системи дизайну.
 
-Збереження даних: Автоматична синхронізація з localStorage через useEffect.
+Розділення модулів: Окремі файли для TasksContext та TasksProvider для повної сумісності з React Fast Refresh.
 
-Оптимізація продуктивності: Використано Lazy Initializer для стейту, що забезпечує зчитування з localStorage лише під час першого рендерингу.
+🌟 Технічна реалізація
+Оптимізація продуктивності:
 
-Покращений UX:
+memo(): Запобігає зайвим рендерам елементів списку.
 
-Автофокус: Керування фокусом інпуту за допомогою useRef для безперервного введення завдань.
+useCallback(): Стабілізує посилання на функції, що передаються через контекст.
 
-Обробка порожніх станів: Зручний інтерфейс з візуальним фідбеком, коли список завдань порожній.
+useMemo(): Оптимізація обчислювальних даних (лічильники завдань).
 
-Доступність (Accessibility): Використання ARIA-атрибутів та семантичної верстки.
+Збереження даних: Синхронізація з localStorage із обробкою помилок try...catch.
 
-Адаптивний дизайн: Mobile-first підхід з використанням CSS Grid/Flexbox та CSS Variables.
+UX покращення: Керування фокусом через useRef, семантична верстка та Mobile-first підхід.
 
 🛠️ Технологічний стек
-React 19 (Функціональні компоненти, хуки: useState, useEffect, useRef)
+React 19 (Hooks: useState, useEffect, useRef, useCallback, useMemo, useContext)
 
-Vite (Швидка збірка та HMR)
+Vite (Блискавична збірка)
 
-Vanilla CSS (Власні змінні, транзішн-ефекти та адаптивна сітка)
+CSS3 (Змінні, Flexbox/Grid, адаптивність)
 
-🚀 Чого я навчився під час рефакторингу
-Декларативний UI: Замість ручного додавання/видалення елементів, я описую стан інтерфейсу, а React дбає про оновлення.
+📦 Installation / Встановлення
+git clone https://github.com/dino004/task-board-react
 
-Prop Drilling: Робота з передачею даних та функцій через рівні компонентів.
+npm install
 
-Надійність: Обробка помилок парсингу JSON за допомогою try...catch при ініціалізації даних.
-
-📦 Встановлення та запуск
-Клонувати репозиторій: git clone ...
-
-Встановити залежності: npm install
-
-Запустити сервер для розробки: npm run dev
+npm run dev
